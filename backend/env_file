@@ -1,0 +1,12 @@
+// Renomeie para .env
+
+module.exports = {
+    authSecret: '',
+    db: {
+        host: '127.0.0.1',
+        port: 5432,
+        database: 'quizz-db',
+        user: 'postgres',
+        password: 'root'
+    }
+}

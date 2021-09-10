@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:9.6
+    container_name: ark-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ark-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@ark.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "@dm!n123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+  services:
+mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - /data:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+networks: 
+  postgres-compose-network:
+    driver: bridge
