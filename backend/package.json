@@ -1,0 +1,30 @@
+{
+  "name": "quizz-ark-node",
+  "version": "1.0.0",
+  "description": "Project Quizz-4rk for knowledge test",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "production": "pm2 start index.js --name quizz-4rk"
+  },
+  "author": "Luis Gustavo Araki",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.19.0",
+    "consign": "0.1.6",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "jsonwebtoken": "8.5.1",
+    "knex": "0.95.8",
+    "mongodb": "3.6.10",
+    "mongoose": "5.13.3",
+    "passport": "0.4.1",
+    "passport-jwt": "4.0.0",
+    "pg": "8.7.0",
+    "pm2": "5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.12"
+  }
+}
