@@ -112,6 +112,9 @@ module.exports = (app) => {
       let correctAnswer = isCorrect(questionData.answers, choice);
       let activity = await Activity.findOne({ exam: exam, user: user });
       const choices = activity.choices;
+      const notValidChoice = choices.some((value) => value.question === choice.question)
+
+      if(notValidChoice) throw new Error(`Existing answer to this question!`);  
 
       choice.correct = correctAnswer
       choices.push(choice)
