@@ -101,6 +101,7 @@ module.exports = (app) => {
     try {
 
       const { exam, choice } = req.body;
+      const user = req.user.email;
 
       // Validations
       existsOrError(choice, "Respostas não informadas!");
@@ -109,7 +110,7 @@ module.exports = (app) => {
 
       let questionData = await Question.findById(choice.question);
       let correctAnswer = isCorrect(questionData.answers, choice);
-      let activity = await Activity.findOne({ exam: exam });
+      let activity = await Activity.findOne({ exam: exam, user: user });
       const choices = activity.choices;
 
       choice.correct = correctAnswer
@@ -144,7 +145,7 @@ module.exports = (app) => {
   }
 
   async function verifyActivity(user, exam) {
-    const activity = await Activity.findOne({ exam: exam._id });
+    const activity = await Activity.findOne({ exam: exam._id, user: user});
 
     if (!isExist(activity)) {
       return await Activity.create({
